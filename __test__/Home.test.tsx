@@ -41,17 +41,6 @@ it('should have an image', () => {
     expect(image).toBeInTheDocument(); //Assert
 })
 
-//  it('renders a button linking to /about', () => {
-//     render(<Home />);
-
-//     // Check the button
-//     const button = screen.getByRole('button', { name: /take me to the next page/i });
-//     expect(button).toBeInTheDocument();
-
-//     // Check that the button is wrapped in a link
-//     const link = button.closest('a');
-//     expect(link).toHaveAttribute('href', '/about');
-//   });
 
 it('renders a button to /about', () => {
     render(<Home/>);
