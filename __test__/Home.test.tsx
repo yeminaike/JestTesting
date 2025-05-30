@@ -1,8 +1,50 @@
 import Home from '@/app/page'
-import {render, screen} from '@testing-library/react'
+import { fireEvent, render, screen} from '@testing-library/react'
+import { useRouter } from 'next/navigation'
 
+
+
+// jest.mock('next/navigation', () => ({
+//   useRouter: jest.fn(),
+// }));
+
+// describe('Home page navigation button', () => {
+//   it('calls router.push("/about") when button is clicked', () => {
+//     const push = jest.fn();
+//     (useRouter as jest.Mock).mockReturnValue({ push });
+
+//     render(<Home />);
+    
+//     const button = screen.getByRole('button', { name: /take me to the next page/i });
+//     fireEvent.click(button);
+
+//     expect(push).toHaveBeenCalledWith('/about');
+//   });
+// });
+
+
+
+// Router testing 
+jest.mock('next/navigation', () => ({
+useRouter: jest.fn(),
+}))
 
 describe('Home', () => {
+
+it("it calls router.push('/about') when button is clicked", () => {
+const push = jest.fn(); 
+// jest.fn is a hybrid function object
+
+(useRouter as jest.Mock).mockReturnValue({push})   //This line mocks the useRouter instance and returns the object of the mock router class
+
+render(<Home/>)
+const button  = screen.getByRole('button', {name: /take me to the next page/i})
+
+fireEvent.click(button)
+expect(push).toHaveBeenCalledWith('/about')
+
+})
+
 
 it('should have Deploy now text', () => {
     render(<Home/>)  //Arrange
@@ -10,6 +52,9 @@ it('should have Deploy now text', () => {
     const myElement = screen.getByText('Deploy now');
     expect(myElement).toBeInTheDocument(); //Assert
 })
+
+
+
 it('should have "learn"', () => {
     render(<Home/>)  //Arrange
 
@@ -35,6 +80,7 @@ it('should have "learn"', () => {
     expect(myElement).toBeInTheDocument(); //Assert
 })
 
+// ImageTesting
 it('should have an image', () => {
     render(<Home/>)  //Arrange
     const image = screen.getByAltText(/Vercel logomark/i);
@@ -42,15 +88,16 @@ it('should have an image', () => {
 })
 
 
-it('renders a button to /about', () => {
-    render(<Home/>);
+// LinkTesting
+// it('renders a button to /about', () => {
+//     render(<Home/>);
 
-    const button = screen.getByRole('button', {name:/take me to the next page/i});
-expect(button).toBeInTheDocument();
+//     const button = screen.getByRole('button', {name:/take me to the next page/i});
+// expect(button).toBeInTheDocument();
 
-const link = button.closest('a');
-expect(link).toHaveAttribute('href', '/about');
-})
+// const link = button.closest('a');
+// expect(link).toHaveAttribute('href', '/about');
+// })
 
 
 
