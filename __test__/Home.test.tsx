@@ -3,7 +3,6 @@ import { fireEvent, render, screen} from '@testing-library/react'
 import { useRouter } from 'next/navigation'
 
 
-
 // jest.mock('next/navigation', () => ({
 //   useRouter: jest.fn(),
 // }));
@@ -38,9 +37,9 @@ const push = jest.fn();
 (useRouter as jest.Mock).mockReturnValue({push})   //This line mocks the useRouter instance and returns the object of the mock router class
 
 render(<Home/>)
-const button  = screen.getByRole('button', {name: /take me to the next page/i})
+const buttonFeature  = screen.getByRole('button', {name: /take me to the next page/i})
 
-fireEvent.click(button)
+fireEvent.click(buttonFeature)
 expect(push).toHaveBeenCalledWith('/about')
 
 })
@@ -54,31 +53,31 @@ it('should have Deploy now text', () => {
 })
 
 
+// it('should have "learn"', () => {
+//     render(<Home/>)  //Arrange
 
-it('should have "learn"', () => {
-    render(<Home/>)  //Arrange
+//     const myElement = screen.getByText(/learn/i);
+//     expect(myElement).toBeInTheDocument(); //Assert
+// })
+// it('should have "learn"', () => {
+//     render(<Home/>)  //Arrange
 
-    const myElement = screen.getByText(/learn/i);
-    expect(myElement).toBeInTheDocument(); //Assert
-})
-it('should have "learn"', () => {
-    render(<Home/>)  //Arrange
+//     const myElement = screen.getByText(/learn/i);
+//     expect(myElement).toBeInTheDocument(); //Assert
+// })
+// it('should have "learn"', () => {
+//     render(<Home/>)  //Arrange
 
-    const myElement = screen.getByText(/learn/i);
-    expect(myElement).toBeInTheDocument(); //Assert
-})
-it('should have "learn"', () => {
-    render(<Home/>)  //Arrange
+//     const myElement = screen.getByText(/learn/i);
+//     expect(myElement).toBeInTheDocument(); //Assert
+// })
 
-    const myElement = screen.getByText(/learn/i);
-    expect(myElement).toBeInTheDocument(); //Assert
-})
-it('should have "learn"', () => {
-    render(<Home/>)  //Arrange
+// it('should have "learn"', () => {
+//     render(<Home/>)  //Arrange
 
-    const myElement = screen.getByText(/learn/i);
-    expect(myElement).toBeInTheDocument(); //Assert
-})
+//     const myElement = screen.getByText(/learn/i);
+//     expect(myElement).toBeInTheDocument(); //Assert
+// })
 
 // ImageTesting
 it('should have an image', () => {
@@ -99,6 +98,28 @@ it('should have an image', () => {
 // expect(link).toHaveAttribute('href', '/about');
 // })
 
+
+// ToggleTesting
+
+it('toggles paragraph visibility and button label', () => {
+  render(<Home />);
+  const button = screen.getByRole('button', { name: /showtext|hidetext/i });
+
+  const toggleCheck = (shouldShow: boolean) => {
+    fireEvent.click(button);
+
+    if (shouldShow) {
+      expect(screen.getByText(/i don appear/i)).toBeInTheDocument();
+      expect(button).toHaveTextContent(/hidetext/i);
+    } else {
+      expect(screen.queryByText(/i don appear/i)).not.toBeInTheDocument();
+      expect(button).toHaveTextContent(/showtext/i);
+    }
+  };
+
+  toggleCheck(true);
+  toggleCheck(false);
+});
 
 
 

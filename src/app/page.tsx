@@ -9,11 +9,17 @@ import { useState } from "react";
 
 export default function Home() {
   const [count, setCount] = useState(0)
+  const [show,  setShow] = useState(false)
   const router = useRouter();
 
   const goAway = () => {
     router.push('/about')
   }
+
+  const toggleShow = () => {
+    setShow(!show)
+  }
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -66,11 +72,8 @@ export default function Home() {
       </main>
 
      
-      <button 
-      onClick={() => setCount(count + 1  )}
-      className="cursor-pointer bg-amber-500 rounded-[2rem] p-[0.5rem]">
-        {count}
-      </button>
+      
+
 
 
 
@@ -88,7 +91,7 @@ className="cursor-pointer bg-amber-500 rounded-[2rem] p-[0.5rem]">
       </button>
     </Link> */}
     
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      {/* <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
@@ -137,7 +140,21 @@ className="cursor-pointer bg-amber-500 rounded-[2rem] p-[0.5rem]">
 
 
        
-      </footer>
+      </footer> */}
+      <button 
+      onClick={() => setCount(count + 1  )}
+      className="cursor-pointer bg-amber-500 rounded-[2rem] p-[0.5rem]">
+        {count}
+      </button>
+
+     
+<button 
+onClick={toggleShow}
+className="text-white bg-red-700 rounded-md p-3">
+{show ? 'HideText': 'ShowText'}
+</button>
+{show && <p>I don appear</p>}
+    
     </div>
   );
 }
