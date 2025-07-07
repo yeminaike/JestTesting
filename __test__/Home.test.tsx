@@ -121,7 +121,16 @@ it('toggles paragraph visibility and button label', () => {
   toggleCheck(false);
 });
 
+//ArrayTesting
+// This array tests if the contents are renedered in the page
 
+it ('renders all the tennis names from the array',() => {
+  render(<Home/>)
+
+  expect(screen.getByText('Roger Federer')).toBeInTheDocument();
+  expect(screen.getByText('Novak Djokovic')).toBeInTheDocument();
+  expect(screen.getByText('Serena Williams')).toBeInTheDocument();
+})
 
 })
 
