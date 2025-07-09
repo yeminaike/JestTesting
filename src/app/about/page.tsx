@@ -9,18 +9,21 @@ export default function About() {
 
     {
       id: 1,
-      logo: '/images/LogoAI.png'
+      logo: '/images/LogoAI.png',
+      logoName: 'Tobi'
 
     },
 
     {
       id: 2,
-      logo: '/images/Profile.png'
+      logo: '/images/Profile.png',
+      logoName: 'Yemoooooo'
     },
 
     {
       id: 3,
-      logo: '/images/PdfIcon.png'
+      logo: '/images/PdfIcon.png',
+      logoName: 'Djokovic'
     }
 
   ]
@@ -39,6 +42,8 @@ export default function About() {
             height={80}
             />
           </div>
+
+          <p>{logo.logoName}</p>
         </div>
       ))
     )}
