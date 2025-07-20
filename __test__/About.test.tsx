@@ -25,6 +25,7 @@ expect(images).toHaveLength(3)
 
 
 it('it renders all forms input', () => {
+    
     render(<About/>)
     expect(screen.getByPlaceholderText(/Full Name/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/Email/i)).toBeInTheDocument();
