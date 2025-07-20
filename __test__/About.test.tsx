@@ -22,8 +22,6 @@ expect(images).toHaveLength(3)
 //     })
 // })
 
-
-
 it('it renders all forms input', () => {
     render(<About/>)
     expect(screen.getByPlaceholderText(/Full Name/i)).toBeInTheDocument();
@@ -31,6 +29,7 @@ it('it renders all forms input', () => {
     expect(screen.getByPlaceholderText(/Phone no/i)).toBeInTheDocument();
      expect(screen.getByPlaceholderText(/Subject/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/Message/i)).toBeInTheDocument();
+    
 })
 
 })
