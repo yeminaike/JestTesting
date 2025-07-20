@@ -78,14 +78,12 @@ it('should have Deploy now text', () => {
 //     const myElement = screen.getByText(/learn/i);
 //     expect(myElement).toBeInTheDocument(); //Assert
 // })
-
 // ImageTesting
 it('should have an image', () => {
     render(<Home/>)  //Arrange
     const image = screen.getByAltText(/Vercel logomark/i);
     expect(image).toBeInTheDocument(); //Assert
 })
-
 
 // LinkTesting
 // it('renders a button to /about', () => {
